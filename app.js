@@ -118,7 +118,7 @@ var scoresComponent = (function () {
             properties: ['scores: scores', 'answer: answer']
         }),
         angular2_1.View({
-            template: '<ul><li *ng-for="#score of scores" (click)=checkScore(score)>{{score}}%</li></ul>',
+            template: '<ul><li *ng-for="#score of scores" class="score" (click)=checkScore(score)>{{score}}%</li></ul>',
             directives: [angular2_1.NgFor]
         }), 
         __metadata('design:paramtypes', [])
@@ -189,7 +189,7 @@ var AppComponent = (function () {
             appInjector: [Game]
         }),
         angular2_1.View({
-            template: "<ul><li *ng-for=\"#player of players; #i=index\"><div>player{{i + 1}}</div><player [player-info]=\"player\"></player></li></ul>\n\t<streets [cards]=\"streets\"></streets>\n\t<div>What are Player1 chances to win?</div>\n\t<scores [scores]=\"scores\" [answer]=\"rightAnswer\"></scores>",
+            template: "<ul><li *ng-for=\"#player of players; #i=index\" class=\"player\"><div>player{{i + 1}}:</div><player [player-info]=\"player\"></player></li></ul>\n\t<div class=\"flop\">flop:<streets [cards]=\"streets\"></streets></div>\n\t<div>What are Player1 chances to win?</div>\n\t<scores [scores]=\"scores\" [answer]=\"rightAnswer\"></scores>",
             directives: [angular2_1.NgFor, PlayerComponent, StreetsComponent, scoresComponent]
         }), 
         __metadata('design:paramtypes', [Game])

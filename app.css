@@ -1,0 +1,12 @@
+.player {
+	display: inline-block;
+	margin-left: 150px;
+}
+
+.flop {
+    margin-left: 335px;
+}
+
+.score {
+	cursor: pointer;
+}

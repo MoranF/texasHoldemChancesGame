@@ -102,7 +102,7 @@ class StreetsComponent {
   	properties: ['scores: scores', 'answer: answer']
 })
 @View({
-	template: '<ul><li *ng-for="#score of scores" (click)=checkScore(score)>{{score}}%</li></ul>',
+	template: '<ul><li *ng-for="#score of scores" class="score" (click)=checkScore(score)>{{score}}%</li></ul>',
 	directives: [NgFor]
 })
 // Component controller
@@ -142,8 +142,8 @@ class PlayerComponent {
   	appInjector: [Game]
 })
 @View({
-	template: `<ul><li *ng-for="#player of players; #i=index"><div>player{{i + 1}}</div><player [player-info]="player"></player></li></ul>
-	<streets [cards]="streets"></streets>
+	template: `<ul><li *ng-for="#player of players; #i=index" class="player"><div>player{{i + 1}}:</div><player [player-info]="player"></player></li></ul>
+	<div class="flop">flop:<streets [cards]="streets"></streets></div>
 	<div>What are Player1 chances to win?</div>
 	<scores [scores]="scores" [answer]="rightAnswer"></scores>`,
 	directives: [NgFor,PlayerComponent, StreetsComponent, scoresComponent]
