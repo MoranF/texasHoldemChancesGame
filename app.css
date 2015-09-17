@@ -10,3 +10,7 @@
 .score {
 	cursor: pointer;
 }
+
+.is-red {
+	color: red;
+}

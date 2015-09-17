@@ -127,12 +127,17 @@ class scoresComponent {
   	properties: ['playerInfo: player-info']
 })
 @View({
-	template: '<ul><li *ng-for="#card of playerInfo.cards"><card [card-info]="card"></card></li></ul>',
+	template: '<ul><li *ng-for="#card of playerInfo.cards" [class.is-red]="isRedSymbol(card.symbol)"><card [card-info]="card"></card></li></ul>',
 	directives: [NgFor, CardComponent]
 })
 // Component controller
 class PlayerComponent {
 	constructor() {
+	}
+	isRedSymbol(symbol) {
+		if(symbol > 1) {
+			return true;
+		}
 	}
 }
 

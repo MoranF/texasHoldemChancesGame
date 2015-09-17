@@ -129,13 +129,18 @@ var scoresComponent = (function () {
 var PlayerComponent = (function () {
     function PlayerComponent() {
     }
+    PlayerComponent.prototype.isRedSymbol = function (symbol) {
+        if (symbol > 1) {
+            return true;
+        }
+    };
     PlayerComponent = __decorate([
         angular2_1.Component({
             selector: 'player',
             properties: ['playerInfo: player-info']
         }),
         angular2_1.View({
-            template: '<ul><li *ng-for="#card of playerInfo.cards"><card [card-info]="card"></card></li></ul>',
+            template: '<ul><li *ng-for="#card of playerInfo.cards" [class.is-red]="isRedSymbol(card.symbol)"><card [card-info]="card"></card></li></ul>',
             directives: [angular2_1.NgFor, CardComponent]
         }), 
         __metadata('design:paramtypes', [])
