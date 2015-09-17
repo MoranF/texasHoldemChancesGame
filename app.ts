@@ -3,7 +3,7 @@
 import {Component, View, bootstrap, NgFor} from 'angular2/angular2';
 
 //service
-export class Game {
+class Game {
 	constructor() {	
 	}
 	pack = [];
@@ -42,12 +42,41 @@ export class Game {
   	properties: ['cardInfo: card-info']
 })
 @View({
-	template: '{{cardInfo.value}}, {{cardInfo.symbol}}'
+	template: '{{getCardValue(cardInfo.value)}} {{getCardSymbol(cardInfo.symbol)}}'
 })
 // Component controller
 class CardComponent {
 
 	constructor() {
+	}
+
+	getCardValue(cardValue) {
+		switch(cardValue) {
+			case 9:
+				return 'Jack';
+			case 10:
+				return 'Queen';
+			case 11:
+				return 'King';
+			case 12: 
+				return 'Ace';
+			default: 
+				//numbers
+				return cardValue + 2;
+		}
+	}
+
+	getCardSymbol(cardSymbol) {
+		switch(cardSymbol) {
+			case 0:
+			return '\u2660';
+			case 1:
+			return '\u2663';
+			case 2:
+			return '\u2665';
+			case 3:
+			return '\u2666';
+		}
 	}
 }
 
@@ -73,7 +102,7 @@ class StreetsComponent {
   	properties: ['scores: scores', 'answer: answer']
 })
 @View({
-	template: '<ul><li *ng-for="#score of scores" (click)=checkScore(score)>{{score}}</li></ul>',
+	template: '<ul><li *ng-for="#score of scores" (click)=checkScore(score)>{{score}}%</li></ul>',
 	directives: [NgFor]
 })
 // Component controller
@@ -113,7 +142,10 @@ class PlayerComponent {
   	appInjector: [Game]
 })
 @View({
-	template: '<ul><li *ng-for="#player of players"><player [player-info]="player"></player></li></ul><streets [cards]="streets"></streets><scores [scores]="scores" [answer]="rightAnswer"></scores>',
+	template: `<ul><li *ng-for="#player of players; #i=index"><div>player{{i + 1}}</div><player [player-info]="player"></player></li></ul>
+	<streets [cards]="streets"></streets>
+	<div>What are Player1 chances to win?</div>
+	<scores [scores]="scores" [answer]="rightAnswer"></scores>`,
 	directives: [NgFor,PlayerComponent, StreetsComponent, scoresComponent]
 })
 // Component controller
