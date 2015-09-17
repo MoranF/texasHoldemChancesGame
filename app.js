@@ -87,13 +87,18 @@ var CardComponent = (function () {
 var StreetsComponent = (function () {
     function StreetsComponent() {
     }
+    StreetsComponent.prototype.isRedSymbol = function (symbol) {
+        if (symbol > 1) {
+            return true;
+        }
+    };
     StreetsComponent = __decorate([
         angular2_1.Component({
             selector: 'streets',
             properties: ['cards: cards']
         }),
         angular2_1.View({
-            template: '<ul><li *ng-for="#card of cards"><card [card-info]="card"></card></li></ul>',
+            template: '<ul><li *ng-for="#card of cards" [class.is-red]="isRedSymbol(card.symbol)"><card [card-info]="card"></card></li></ul>',
             directives: [angular2_1.NgFor, CardComponent]
         }), 
         __metadata('design:paramtypes', [])

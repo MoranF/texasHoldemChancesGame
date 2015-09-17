@@ -86,13 +86,18 @@ class CardComponent {
   	properties: ['cards: cards']
 })
 @View({
-	template: '<ul><li *ng-for="#card of cards"><card [card-info]="card"></card></li></ul>',
+	template: '<ul><li *ng-for="#card of cards" [class.is-red]="isRedSymbol(card.symbol)"><card [card-info]="card"></card></li></ul>',
 	directives: [NgFor, CardComponent]
 })
 // Component controller
 class StreetsComponent {
 
 	constructor() {
+	}
+	isRedSymbol(symbol) {
+		if(symbol > 1) {
+			return true;
+		}
 	}
 }
 
